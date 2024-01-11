@@ -7,7 +7,7 @@
 Summary: Library for reading RAW files obtained from digital photo cameras
 Name: LibRaw
 Version: 0.20.2
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: BSD and LGPLv2
 URL: http://www.libraw.org
 
@@ -19,7 +19,12 @@ BuildRequires: autoconf automake libtool
 BuildRequires: make
 
 Source0: http://github.com/LibRaw/LibRaw/archive/%{version}.tar.gz
+
 Patch0: LibRaw-pkgconfig.patch
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=2172140
+Patch1: LibRaw-check-for-input-buffer-size-on-datastream-gets.patch
+
 Provides: bundled(dcraw) = 9.25
 
 %description
@@ -114,6 +119,10 @@ rm -fv %{buildroot}%{_libdir}/lib*.la
 
 
 %changelog
+* Tue Apr 04 2023 Debarshi Ray <rishi@fedoraproject.org> - 0.20.2-6
+- Fix CVE-2021-32142
+Resolves: #2172140
+
 * Mon Dec 13 2021 Debarshi Ray <rishi@fedoraproject.org> - 0.20.2-5
 - CDDL is not an approved license
 Resolves: #2031918
