@@ -7,7 +7,7 @@
 Summary: Library for reading RAW files obtained from digital photo cameras
 Name: LibRaw
 Version: 0.21.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD and LGPLv2
 URL: http://www.libraw.org
 
@@ -24,6 +24,12 @@ Patch0: LibRaw-pkgconfig.patch
 
 # CVE-2023-1729
 Patch1: 9ab70f6dca19229cb5caad7cc31af4e7501bac93.patch
+
+# https://redhat.atlassian.net/browse/RHEL-165456
+Patch2: LibRaw-CVE-2026-21413-TALOS-2026-2331.patch
+
+# https://redhat.atlassian.net/browse/RHEL-165373
+Patch3: LibRaw-CVE-2026-24450-TALOS-2026-2363.patch
 
 Provides: bundled(dcraw) = 9.25
 
@@ -119,6 +125,10 @@ rm -fv %{buildroot}%{_libdir}/lib*.la
 
 
 %changelog
+* Mon Apr 27 2026 Debarshi Ray <rishi@fedoraproject.org> - 0.21.1-2
+- Fix CVE-2026-21413 and CVE-2026-24450
+Resolves: RHEL-165373, RHEL-165456
+
 * Mon Oct 02 2023 Debarshi Ray <rishi@fedoraproject.org> - 0.21.1-1
 - 0.21.1
 - Include the fix for CVE-2023-1729 from Fedora
