@@ -1,8 +1,8 @@
 Summary: Library for reading RAW files obtained from digital photo cameras
 Name: LibRaw
 Version: 0.19.5
-Release: 4%{?dist}
-License: BSD and (CDDL or LGPLv2)
+Release: 6%{?dist}
+License: BSD-3-Clause and (CDDL-1.0 or LGPL-2.1-only)
 URL: http://www.libraw.org
 
 BuildRequires: gcc-c++
@@ -16,6 +16,10 @@ Patch0:  LibRaw-0.6.0-pkgconfig.patch
 Patch1:  LibRaw-CVE-2020-15503.patch
 Patch2:  LibRaw-CVE-2020-24870.patch
 Patch3:  LibRaw-CVE-2021-32142.patch
+Patch4:  LibRaw-CVE-2026-20889-TALOS-2026-2358.patch
+Patch5:  LibRaw-CVE-2026-21413-TALOS-2026-2331.patch
+Patch6:  LibRaw-CVE-2026-24660-TALOS-2026-2359.patch
+
 Provides: bundled(dcraw) = 9.25
 
 %description
@@ -58,6 +62,9 @@ LibRaw sample programs
 %patch1 -p1 -b .cve-2020-15503
 %patch2 -p1 -b .cve-2020-24870
 %patch3 -p1 -b .cve-2021-32142
+%patch4 -p1 -b .cve-2026-20889
+%patch5 -p1 -b .cve-2026-21413
+%patch6 -p1 -b .cve-2026-24660
 
 %build
 autoreconf -if
@@ -121,6 +128,15 @@ rm -fv %{buildroot}%{_libdir}/lib*.la
 
 
 %changelog
+* Thu Apr 30 2026 Debarshi Ray <rishi@fedoraproject.org> - 0.19.5-6
+- Backport fix for CVE-2026-24660 from upstream
+Resolves: RHEL-165412
+
+* Tue Apr 28 2026 Debarshi Ray <rishi@fedoraproject.org> - 0.19.5-5
+- Backport fixes for CVE-2026-20889 and CVE-2026-21413 from upstream
+- Migrate to SPDX license
+Resolves: RHEL-165404, RHEL-165408
+
 * Mon Oct 23 2023 Debarshi Ray <rishi@fedoraproject.org> - 0.19.5-4
 - Backport fix for CVE-2021-32142 from upstream
 Resolves: RHEL-9523
