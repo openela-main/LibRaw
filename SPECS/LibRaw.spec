@@ -7,7 +7,7 @@
 Summary: Library for reading RAW files obtained from digital photo cameras
 Name: LibRaw
 Version: 0.21.1
-Release: 2%{?dist}.1
+Release: 4%{?dist}
 License: BSD and LGPLv2
 URL: http://www.libraw.org
 
@@ -25,14 +25,14 @@ Patch0: LibRaw-pkgconfig.patch
 # CVE-2023-1729
 Patch1: 9ab70f6dca19229cb5caad7cc31af4e7501bac93.patch
 
-# https://redhat.atlassian.net/browse/RHEL-165461
+# https://redhat.atlassian.net/browse/RHEL-165464
 Patch2: LibRaw-CVE-2026-21413-TALOS-2026-2331.patch
 
-# https://redhat.atlassian.net/browse/RHEL-165374
+# https://redhat.atlassian.net/browse/RHEL-165375
 Patch3: LibRaw-CVE-2026-24450-TALOS-2026-2363.patch
 
-# https://redhat.atlassian.net/browse/RHEL-219221
-# https://github.com/LibRaw/LibRaw/commit/38359db2ed352e98cef9a90e3f7071c20a2ebdda
+# https://redhat.atlassian.net/browse/RHEL-219218
+# https://github.com/LibRaw/LibRaw/commit/233ae06de75b083407f65b437cb1da1bdbb52076
 Patch4: LibRaw-CVE-2026-51235.patch
 
 Provides: bundled(dcraw) = 9.25
@@ -129,13 +129,13 @@ rm -fv %{buildroot}%{_libdir}/lib*.la
 
 
 %changelog
-* Thu Jul 30 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.21.1-2.1
-- Fix CVE-2026-51235
-Resolves: RHEL-219221
+* Fri Aug 07 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 0.21.1-4
+- Fix CVE-2026-51235: integer overflow in image size calculations
+Resolves: RHEL-219218
 
-* Tue Apr 28 2026 Debarshi Ray <rishi@fedoraproject.org> - 0.21.1-2
+* Tue Apr 28 2026 Debarshi Ray <rishi@fedoraproject.org> - 0.21.1-3
 - Fix CVE-2026-21413 and CVE-2026-24450
-Resolves: RHEL-165374, RHEL-165461
+Resolves: RHEL-165375, RHEL-165464
 
 * Mon Oct 02 2023 Debarshi Ray <rishi@fedoraproject.org> - 0.21.1-1
 - 0.21.1
